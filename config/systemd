@@ -1,0 +1,16 @@
+config() {
+	local d="${args[directory]}"
+	# set the hostname
+#	echo "${args[hostname]}" > "$d/etc/hostname"
+
+#	cp "$HERE/default.network" "$d/etc/systemd/network/"
+
+	# enable the networking services
+	exec-chroot bash <<-EOD
+	systemctl enable systemd-networkd.service
+	systemctl enable systemd-resolved.service
+#	ln -sf /run/systemd/resolve/stub-resolv.conf /etc/resolv.conf
+EOD
+}
+
+# vim: ft=bash

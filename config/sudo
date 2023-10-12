@@ -1,0 +1,8 @@
+config() {
+	local d="${args[directory]}"
+
+	awk '/wheel/ && /NOPASSWD/' $d/etc/sudoers | cut -c3- > $d/etc/sudoers.d/wheel
+	chmod 0750 $d/etc/sudoers.d
+}
+
+# vim: ft=bash

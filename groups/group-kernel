@@ -1,0 +1,19 @@
+fn() {
+	local metal_intel=( intel-ucode vulkan-intel libva-intel-driver )
+	local metal_amd=( amd-ucode )
+	local wifi=(iwd wireless-regdb)
+	local bluetooth=(bluez bluez-utils bluez-cups)
+
+	PACKAGES+=(
+		linux linux-firmware mkinitcpio
+		libfido2 tpm2-tss
+		btrfs-progs dosfstools efibootmgr
+		"${metal_intel[@]}"
+		"${metal_amd[@]}"
+		"${wifi[@]}"
+		"${bluetooth[@]}"
+	)
+}
+fn; unset -f fn
+
+# vim: ft=bash ts=4

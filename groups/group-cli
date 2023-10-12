@@ -1,0 +1,11 @@
+PACKAGES+=(
+	sudo
+	bash-completion
+	git
+	neovim
+	openssh
+	arch-install-scripts
+	man-db man-pages texinfo
+)
+
+# vim: ft=bash

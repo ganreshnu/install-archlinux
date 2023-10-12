@@ -1,0 +1,13 @@
+config() {
+	cat > $MOUNTPOINT/etc/xdg/reflector/reflector.conf <<-EOD
+	--save /etc/pacman.d/mirrorlist
+	--country US
+	--latest 5
+	--protocol https
+EOD
+	arch-chroot $MOUNTPOINT systemctl enable reflector.timer
+
+	return 0
+}
+
+# vim: ft=bash

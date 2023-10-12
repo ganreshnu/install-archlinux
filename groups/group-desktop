@@ -1,0 +1,38 @@
+. "$HERE/groups/group-cli"
+
+fn() {
+	local -a audio=(
+		pipewire
+		pipewire-alsa
+		pipewire-audio
+		pipewire-jack
+		pipewire-pulse
+		wireplumber
+	)
+
+	local -a video=(
+		libva libva-utils libva-vdpau-driver
+		vulkan-mesa-layers vulkan-icd-loader
+	)
+
+	local -a printing=(cups)
+
+	PACKAGES+=(
+		"${video[@]}" "${audio[@]}"
+		bemenu-wayland pinentry-bemenu
+		mako
+		noto-fonts noto-fonts-cjk noto-fonts-emoji noto-fonts-extra
+		wayland
+		wayland-protocols
+		wl-clipboard
+		sway swaybg swayidle swaylock
+		xdg-desktop-portal-wlr
+		xdg-user-dirs
+		flatpak
+		foot
+		"${printing[@]}"
+	)
+}
+fn; unset -f fn
+
+# vim: ft=bash ts=4

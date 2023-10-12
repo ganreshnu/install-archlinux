@@ -1,0 +1,25 @@
+. "$HERE/groups/group-cli"
+
+PACKAGES+=(
+	base-devel
+	unzip
+	wget
+	ripgrep
+	fd
+	python
+	python-pip
+	npm
+	cmake
+	extra-cmake-modules
+	ninja
+	luarocks
+	doxygen
+	rustup
+	ruby
+	perl
+	go
+	composer
+	jdk-openjdk
+)
+
+# vim: ft=bash ts=4

@@ -1,0 +1,8 @@
+config() {
+	git-repo .ssh https://github.com/ganreshnu/config-openssh.git
+	local d="${args[directory]}/etc/skel/.ssh"
+	ssh-keyscan github.com > "$d/known_hosts"
+	curl https://github.com/ganreshnu.keys > "$d/authorized_keys"
+}
+
+# vim: ft=bash

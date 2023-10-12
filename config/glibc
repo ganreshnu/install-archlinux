@@ -1,0 +1,9 @@
+config() {
+	exec-chroot bash <<-EOD
+		sed -i "/${args[language]}/s/^#//g" /etc/locale.gen
+		locale-gen
+		echo "LANG=${args[language]}" > /etc/locale.conf
+EOD
+}
+
+# vim: ft=bash

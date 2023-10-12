@@ -1,0 +1,5 @@
+config() {
+	cp "$HERE/nftables.conf" "${args[directory]}/etc/"
+	exec-chroot systemctl enable nftables.service
+}
+# vim: ft=bash

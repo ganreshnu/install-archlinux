@@ -1,0 +1,6 @@
+config() {
+	# setup the hw clock
+	exec-chroot hwclock --systohc --update-drift || true
+}
+
+# vim: ft=bash

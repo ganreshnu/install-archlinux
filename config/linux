@@ -1,0 +1,45 @@
+config() {
+	local d="${args[directory]}"
+	original '/etc/mkinitcpio.conf'
+	echo 'HOOKS=(autodetect block filesystems modconf systemd)' >> "$d/etc/mkinitcpio.conf"
+
+	local uuid
+	uuid="$(findmnt -n -o UUID "$d")"
+	local subvol=$(findmnt -n "$d" | awk -F '[][]' '{print $2}')
+	original '/etc/fstab'
+	sed -e "s/{{SUBVOLUME}}/${subvol:1}/" -e "s/{{ROOTUUID}}/$uuid/" "$HERE/fstab" >> "${args[directory]}/etc/fstab"
+
+	if [[ "$(stat -f -c %T "$d/boot")" == 'msdos' ]]; then
+		nsrun bootctl --esp-path /boot --no-variables install
+		nsrun mkinitcpio -P
+
+		cat > "$d/boot/loader/entries/${args[hostname]}.conf" <<-EOD
+		title           Arch Linux (${args[hostname]})
+		sort-key        10
+		linux           /vmlinuz-linux
+		initrd          /initramfs-linux.img
+		initrd          /intel-ucode.img
+		initrd          /amd-ucode.img
+		options         quiet consoleblank=60
+		options         root=UUID=$uuid
+		options         rootflags=subvol=$subvol
+		#options         systemd.volatile=overlay
+EOD
+
+		cat > "$d/boot/loader/entries/${args[hostname]}-fallback.conf" <<-EOD
+		title           Arch Linux (${args[hostname]}-fallback)
+		sort-key        99
+		linux           /vmlinuz-linux
+		initrd          /initramfs-linux-fallback.img
+		initrd          /intel-ucode.img
+		initrd          /amd-ucode.img
+		options         consoleblank=60
+		options         root=UUID=$uuid
+		options         rootflags=subvol=$subvol
+EOD
+	fi
+	# allow video group to control the backlight
+	cp "$HERE/backlight.rules" "$d/etc/udev/rules.d/"
+}
+
+# vim: ft=bash ts=4

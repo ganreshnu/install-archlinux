@@ -1,0 +1,5 @@
+config() {
+  git-repo .config/nvim https://github.com/ganreshnu/config-neovim.git
+}
+
+# vim: ft=bash ts=4

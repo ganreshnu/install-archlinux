@@ -1,0 +1,6 @@
+config() {
+	git-repo .gnupg https://github.com/ganreshnu/config-gnupg.git
+	chmod go-rwx "${args[directory]}/etc/skel/.gnupg"
+}
+
+# vim: ft=bash

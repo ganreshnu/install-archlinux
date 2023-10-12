@@ -1,0 +1,10 @@
+config() {
+	local d="${args[directory]}"
+	mkdir -p "$d/etc/skel/.config"
+
+	[[ -d "$d/etc/skel/.config/sway" ]] \
+			&& git -C "$d/etc/skel/.config/sway" pull \
+			|| git -C "$d/etc/skel/.config" clone --quiet https://github.com/ganreshnu/config-sway.git sway
+
+}
+# vim: ft=bash ts=4

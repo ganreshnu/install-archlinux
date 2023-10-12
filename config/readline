@@ -1,0 +1,5 @@
+config() {
+	git-repo .config/readline https://github.com/ganreshnu/config-readline.git
+}
+
+# vim: ft=bash

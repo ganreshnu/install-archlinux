@@ -1,0 +1,16 @@
+config() {
+	cat > "${args[directory]}/etc/polkit-1/rules.d/50-nopasswd_global.rules" <<-'EOD'
+	/*
+	 * Allow members of the wheel group to execute any actions
+	 * without password authentication.
+	 */
+	polkit.addRule(function(action, subject) {
+		if (subject.isInGroup("wheel")) {
+			return polkit.Result.YES;
+		}
+		return polkit.Result.NOT_HANDLED;
+	});
+EOD
+}
+
+# vim: ft=bash

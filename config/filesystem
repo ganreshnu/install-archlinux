@@ -1,0 +1,6 @@
+config() {
+	mkdir -p "${args[directory]}/etc/skel/.local/"{"state","share","bin"}
+	cp "$HERE/wsl.conf" "${args[directory]}/etc/wsl.conf"
+}
+
+# vim: ft=bash ts=4

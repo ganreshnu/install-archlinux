@@ -1,0 +1,9 @@
+config() {
+	local d="${args[directory]}"
+
+	[[ -d "$d/etc/skel/.vim" ]] \
+		&& git -C "$d/etc/skel/.vim" pull \
+		|| git -C "$d/etc/skel/" clone --quiet --recurse-submodules https://github.com/ganreshnu/config-vim.git .vim
+}
+
+# vim: ft=bash

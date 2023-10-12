@@ -1,0 +1,10 @@
+config() {
+	cp "$HERE/archlinux-mirrorlist-wkd-update.service" "$HERE/archlinux-mirrorlist-wkd-update.timer" "${args[directory]}/etc/systemd/system/"
+
+	exec-chroot bash <<-EOD
+	systemctl enable archlinux-mirrorlist-wkd-update.timer
+	#systemctl enable archlinux-keyring-wkd-sync.timer
+EOD
+}
+
+# vim: ft=bash

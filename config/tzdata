@@ -1,0 +1,5 @@
+config() {
+	exec-chroot ln -sf "/usr/share/zoneinfo/${args[timezone]}" /etc/localtime
+}
+
+# vim: ft=bash

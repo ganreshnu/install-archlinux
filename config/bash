@@ -1,0 +1,26 @@
+config() {
+	local d="${args[directory]}"
+	git-repo .config/bash https://github.com/ganreshnu/config-bash.git
+
+	# insert into .bash_profile
+	original '/etc/skel/.bash_profile'
+	insert() {
+		awk '/^\[\[ -f ~\/\.bashrc \]\] && \. ~\/\.bashrc$/ { system("cat /dev/stdin"); } { print }' "$d/etc/skel/.bash_profile"
+	}
+	cat <<-'EOD' | insert > "/tmp/bash_profile"
+	. .config/bash/profile
+EOD
+	mv /tmp/bash_profile $d/etc/skel/.bash_profile
+
+	original '/etc/skel/.bashrc'
+	cat >> "$d/etc/skel/.bashrc" <<-'EOD'
+	. .config/bash/rc
+EOD
+
+	exec-chroot bash <<-EOD
+	cd /etc/skel
+	ln -sf .config/bash/bash_completion .bash_completion
+EOD
+}
+
+# vim: ft=bash
