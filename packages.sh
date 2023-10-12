@@ -1,4 +1,4 @@
-#!/home/john/argscript/argscript.sh
+#!/bin/env argscript
 
 # PACKAGES that constitute a base install
 declare BASE=(base iptables-nft polkit)
