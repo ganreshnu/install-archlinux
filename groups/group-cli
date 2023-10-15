@@ -3,6 +3,7 @@ PACKAGES+=(
 	bash-completion
 	git
 	neovim
+	fzf
 	openssh
 	arch-install-scripts
 	man-db man-pages texinfo
