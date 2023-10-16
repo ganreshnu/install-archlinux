@@ -3,6 +3,8 @@ PACKAGES+=(
 	bash-completion
 	git
 	neovim
+	ripgrep
+	fd
 	fzf
 	openssh
 	arch-install-scripts

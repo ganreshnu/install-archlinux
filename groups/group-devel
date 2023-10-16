@@ -2,11 +2,8 @@
 
 PACKAGES+=(
 	base-devel
-	unzip
+	zip unzip
 	wget
-	ripgrep
-	fd
-	python
 	python-pip
 	npm
 	cmake
@@ -16,7 +13,6 @@ PACKAGES+=(
 	doxygen
 	rustup
 	ruby
-	perl
 	go
 	composer
 	jdk-openjdk

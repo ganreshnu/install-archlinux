@@ -1,0 +1,5 @@
+config() {
+  git-repo .config/fzf https://github.com/ganreshnu/config-fzf.git
+}
+
+# vim: ft=bash
