@@ -1,0 +1,5 @@
+config() {
+  git-repo .config/tmux https://github.com/ganreshnu/config-tmux.git
+}
+
+# vim: ft=bash ts=4
