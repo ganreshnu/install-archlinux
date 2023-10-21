@@ -1,5 +1,6 @@
 PACKAGES+=(
 	sudo
+	tmux
 	bash-completion
 	git
 	neovim

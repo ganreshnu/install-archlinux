@@ -128,4 +128,4 @@ git-repo() {
 	grep -q "$1" "$statedir/user_config_dirs" || echo "$1" >> "$statedir/user_config_dirs"
 }
 
-
+# vim: ft=bash
