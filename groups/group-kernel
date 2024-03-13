@@ -7,7 +7,7 @@ fn() {
 	PACKAGES+=(
 		linux linux-firmware mkinitcpio
 		libfido2 tpm2-tss
-		btrfs-progs dosfstools efibootmgr
+		btrfs-progs bcachefs-tools dosfstools exfatprogs udftools efibootmgr
 		"${metal_intel[@]}"
 		"${metal_amd[@]}"
 		"${wifi[@]}"
