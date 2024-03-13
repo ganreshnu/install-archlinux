@@ -36,19 +36,19 @@ Argument() {
   if [[ "$1" ]]; then
 	  [[ "$3" ]] && args["$1"]="$3" || args["$1"]=true
   else
-	if [[ "${args[directory]}" ]]; then
-	  groups+=("$3")
-	else
-	  args[directory]="$3"
-	fi
+		if [[ "${args[directory]}" ]]; then
+			groups+=("$3")
+		else
+			args[directory]="$3"
+		fi
   fi
   return 0
 }
 
 Main() {
   if [[ ! "${args[directory]}" || ! -d "${args[directory]}" ]]; then
-	error "DIRECTORY is required and must exist."
-	return 1
+		error "DIRECTORY is required and must exist."
+		return 1
   fi
 
   if [[ ! -x "${args[directory]}/usr/bin/pacman" ]]; then
@@ -68,7 +68,7 @@ Main() {
   done
 
   if [[ ! "${PACKAGES[*]}" ]]; then
-	return 0
+		return 0
   fi
 
 	mount --bind /var/cache/pacman/pkg "${args[directory]}/var/cache/pacman/pkg"
@@ -87,6 +87,10 @@ Main() {
   printf "%i groups: %s\n" ${#groups[@]} "${groups[*]}"
 
   printf "%i arguments remaining: %s\n" $# "$*"
+}
+
+error() {
+	>&2 printf "$(tput setaf 1)error:$(tput sgr0) %s\n" "$*"
 }
 
 exec-chroot() {
