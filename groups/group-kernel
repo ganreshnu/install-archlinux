@@ -1,6 +1,5 @@
 fn() {
-	local metal_intel=( intel-ucode vulkan-intel libva-intel-driver )
-	local metal_amd=( amd-ucode )
+	local ucode=( intel-ucode amd-ucode )
 	local wifi=(iwd wireless-regdb)
 	local bluetooth=(bluez bluez-utils bluez-cups)
 
@@ -8,8 +7,7 @@ fn() {
 		linux linux-firmware mkinitcpio
 		libfido2 tpm2-tss
 		btrfs-progs bcachefs-tools dosfstools exfatprogs udftools efibootmgr
-		"${metal_intel[@]}"
-		"${metal_amd[@]}"
+		"${ucode[@]}"
 		"${wifi[@]}"
 		"${bluetooth[@]}"
 	)

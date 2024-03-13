@@ -1,5 +1,5 @@
 config() {
-	nsrun systemctl enable iwd.service
+	exec-chroot systemctl enable iwd.service
 
 	return 0
 }

@@ -1,7 +1,7 @@
 #!/bin/env argscript
 
 # PACKAGES that constitute a base install
-declare BASE=(base iptables-nft polkit)
+declare BASE=( base iptables-nft polkit dbus-broker-units )
 
 local groups=()
 local PACKAGES=()
@@ -12,6 +12,7 @@ declare -A args=(
 	[timezone]="$(realpath --relative-to /usr/share/zoneinfo "$(readlink /etc/localtime)")"
 )
 local HERE="$(dirname "${BASH_SOURCE[0]}")"
+
 Usage() {
 	cat <<EOD
 Usage: $(basename "${BASH_SOURCE[0]}") [OPTIONS] DIRECTORY [GROUP...]
@@ -78,6 +79,7 @@ Main() {
 	# shellcheck disable=SC2046
 	configure $(exec-chroot pacman -Qq)
 	umount "${args[directory]}/var/cache/pacman/pkg"
+	exec-chroot gpgconf --kill all
 
   # diagnostics
   echo

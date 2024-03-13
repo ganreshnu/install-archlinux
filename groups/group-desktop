@@ -13,6 +13,7 @@ fn() {
 	local -a video=(
 		libva libva-utils libva-vdpau-driver
 		vulkan-mesa-layers vulkan-icd-loader
+		vulkan-intel libva-intel-driver
 	)
 
 	local -a printing=(cups)
